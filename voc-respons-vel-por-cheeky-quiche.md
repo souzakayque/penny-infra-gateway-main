@@ -29,7 +29,7 @@ Decisões confirmadas com o usuário, a serem adotadas no documento:
 |---|---|---|---|
 | POST | `/auth` | [auth.ts](src/services/auth.ts) `post_auth` | [SignIn.tsx:26](src/pages/SignIn/SignIn.tsx#L26) |
 | POST | `/cards` | [card.ts](src/services/card.ts) `post_card` | [NewCard.tsx:51](src/pages/NewCard/NewCard.tsx#L51) |
-| GET | `/cards/{idUser}` | [card.ts](src/services/card.ts) `get_cards` | [Cards.tsx:39](src/pages/Cards/Cards.tsx#L39), [Expenses.tsx:98](src/pages/Expenses/Expenses.tsx#L98) |
+| GET | `/cards/{id_user}` | [card.ts](src/services/card.ts) `get_cards` | [Cards.tsx:39](src/pages/Cards/Cards.tsx#L39), [Expenses.tsx:98](src/pages/Expenses/Expenses.tsx#L98) |
 | POST | `/expenses` | [expense.ts](src/services/expense.ts) `post_expense` | [Expenses.tsx:85](src/pages/Expenses/Expenses.tsx#L85) |
 | POST | `/incomes` | [income.ts](src/services/income.ts) `post_income` | [Incomes.tsx:52](src/pages/Incomes/Incomes.tsx#L52) |
 | GET | `/transactions?…` | [transactions.ts](src/services/transactions.ts) `get_transactions` | [Transactions.tsx:52](src/pages/Transactions/Transactions.tsx#L52) |
@@ -114,7 +114,7 @@ Seguir exatamente as 16 seções exigidas no pedido. Diretrizes por seção:
     `Precisa ser validado`, cobrindo: URL hardcoded, axios morto com baseURL e chave de token
     erradas, `AuthProvider` não montado, `Bearer` ausente, `id_user` vindo do cliente
     (risco de IDOR), IDs hardcoded em Expenses/Incomes, navegação em caso de erro, loop fixo de
-    5 páginas + `sleep(2000)` em Transactions, `useEffect` sem `idUser` nas deps,
+    5 páginas + `sleep(2000)` em Transactions, `useEffect` sem `id_user` nas deps,
     `/cards/{id}` sendo por usuário e não por cartão (path ambíguo), envelope de resposta
     inconsistente (`response` é array em cards, objeto em transactions), `Terms` não roteada,
     duplicação de `PostCardRequest` e `PostUserBankCardRequest` (tipos idênticos),

@@ -46,3 +46,8 @@ variable "get_user_transactions_lambda_function_name" {
   type    = string
   default = "penny-python-get-user-transactions-function"
 }
+
+variable "register_user_lambda_function_name" {
+  type    = string
+  default = "penny-python-sign-up-function"
+}

@@ -37,6 +37,10 @@ data "aws_lambda_function" "get_user_transactions" {
   function_name = var.get_user_transactions_lambda_function_name
 }
 
+data "aws_lambda_function" "register_user" {
+  function_name = var.register_user_lambda_function_name
+}
+
 module "http_api" {
   source     = "../../modules/http_api"
   api_name   = "${local.name_prefix}-api"
@@ -54,7 +58,7 @@ module "http_api" {
       lambda_invoke_arn    = data.aws_lambda_function.register_card.invoke_arn
       lambda_function_name = data.aws_lambda_function.register_card.function_name
     }
-    "GET /cards/{idUser}" = {
+    "GET /cards/{id_user}" = {
       lambda_invoke_arn    = data.aws_lambda_function.get_user_cards.invoke_arn
       lambda_function_name = data.aws_lambda_function.get_user_cards.function_name
     }
@@ -69,6 +73,10 @@ module "http_api" {
     "GET /transactions" = {
       lambda_invoke_arn    = data.aws_lambda_function.get_user_transactions.invoke_arn
       lambda_function_name = data.aws_lambda_function.get_user_transactions.function_name
+    }
+    "POST /users" = {
+      lambda_invoke_arn    = data.aws_lambda_function.register_user.invoke_arn
+      lambda_function_name = data.aws_lambda_function.register_user.function_name
     }
   }
 }
