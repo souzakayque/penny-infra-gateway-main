@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.6"
+  required_version = ">= 1.10"
 
   required_providers {
     aws = {
@@ -8,8 +8,14 @@ terraform {
     }
   }
 
-  # Backend remoto (S3 + DynamoDB lock) é uma pendência — ver seção 14 do plano.
-  # backend "s3" {}
+  # Estado remoto: sem isso o runner do CI perde o estado e recria a API a cada deploy.
+  backend "s3" {
+    bucket       = "penny-infra-s3-general-state"
+    key          = "gtw-main/dev/terraform.tfstate"
+    region       = "us-east-2"
+    encrypt      = true
+    use_lockfile = true
+  }
 }
 
 provider "aws" {
