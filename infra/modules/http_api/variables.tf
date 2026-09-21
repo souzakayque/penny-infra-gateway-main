@@ -27,12 +27,18 @@ variable "cors_allow_origins" {
 
 variable "cors_allow_headers" {
   type    = list(string)
-  default = ["content-type", "authorization"]
+  default = ["content-type", "authorization", "x-amz-date", "x-api-key", "x-requested-with", "accept"]
 }
 
 variable "cors_allow_methods" {
   type    = list(string)
-  default = ["GET", "POST", "OPTIONS"]
+  default = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"]
+}
+
+variable "cors_max_age" {
+  description = "Cache do preflight, em segundos."
+  type        = number
+  default     = 3600
 }
 
 variable "throttling_burst_limit" {

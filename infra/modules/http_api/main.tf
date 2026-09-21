@@ -10,6 +10,7 @@ resource "aws_apigatewayv2_api" "this" {
     allow_origins = var.cors_allow_origins
     allow_headers = var.cors_allow_headers
     allow_methods = var.cors_allow_methods
+    max_age       = var.cors_max_age
   }
 
   tags = var.tags
