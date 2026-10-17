@@ -33,8 +33,16 @@ data "aws_lambda_function" "register_income" {
   function_name = var.register_income_lambda_function_name
 }
 
+data "aws_lambda_function" "register_budget" {
+  function_name = var.register_budget_lambda_function_name
+}
+
 data "aws_lambda_function" "get_user_transactions" {
   function_name = var.get_user_transactions_lambda_function_name
+}
+
+data "aws_lambda_function" "get_user_balance" {
+  function_name = var.get_user_balance_lambda_function_name
 }
 
 data "aws_lambda_function" "register_user" {
@@ -70,9 +78,17 @@ module "http_api" {
       lambda_invoke_arn    = data.aws_lambda_function.register_income.invoke_arn
       lambda_function_name = data.aws_lambda_function.register_income.function_name
     }
+    "POST /budgets" = {
+      lambda_invoke_arn    = data.aws_lambda_function.register_budget.invoke_arn
+      lambda_function_name = data.aws_lambda_function.register_budget.function_name
+    }
     "GET /transactions" = {
       lambda_invoke_arn    = data.aws_lambda_function.get_user_transactions.invoke_arn
       lambda_function_name = data.aws_lambda_function.get_user_transactions.function_name
+    }
+    "GET /balance" = {
+      lambda_invoke_arn    = data.aws_lambda_function.get_user_balance.invoke_arn
+      lambda_function_name = data.aws_lambda_function.get_user_balance.function_name
     }
     "POST /users" = {
       lambda_invoke_arn    = data.aws_lambda_function.register_user.invoke_arn

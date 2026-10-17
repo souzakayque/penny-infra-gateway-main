@@ -42,9 +42,19 @@ variable "register_income_lambda_function_name" {
   default = "penny-python-register-income-function"
 }
 
+variable "register_budget_lambda_function_name" {
+  type    = string
+  default = "penny-python-register-budget-function"
+}
+
 variable "get_user_transactions_lambda_function_name" {
   type    = string
   default = "penny-python-get-user-transactions-function"
+}
+
+variable "get_user_balance_lambda_function_name" {
+  type    = string
+  default = "penny-python-get-user-balance-function"
 }
 
 variable "register_user_lambda_function_name" {
