@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /home/kayque/dev/lambda && ls | grep -i budget; grep -n \"default\" get-user-budgets/infra/variables.tf 2>/dev/null | head -3; grep -rn \"pathParameters\\\\|queryString\" get-user-budgets --include=*.py 2>/dev/null)",
+      "Read(//home/kayque/dev/lambda/**)"
+    ]
+  }
+}

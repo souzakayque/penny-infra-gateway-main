@@ -37,6 +37,10 @@ data "aws_lambda_function" "register_budget" {
   function_name = var.register_budget_lambda_function_name
 }
 
+data "aws_lambda_function" "get_user_budgets" {
+  function_name = var.get_user_budgets_lambda_function_name
+}
+
 data "aws_lambda_function" "get_user_transactions" {
   function_name = var.get_user_transactions_lambda_function_name
 }
@@ -81,6 +85,10 @@ module "http_api" {
     "POST /budgets" = {
       lambda_invoke_arn    = data.aws_lambda_function.register_budget.invoke_arn
       lambda_function_name = data.aws_lambda_function.register_budget.function_name
+    }
+    "GET /budgets/{id_user}" = {
+      lambda_invoke_arn    = data.aws_lambda_function.get_user_budgets.invoke_arn
+      lambda_function_name = data.aws_lambda_function.get_user_budgets.function_name
     }
     "GET /transactions" = {
       lambda_invoke_arn    = data.aws_lambda_function.get_user_transactions.invoke_arn
